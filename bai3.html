@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 3 - Countdown</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 50px; }
+    #timer {
+      font-size: 48px;
+      font-weight: bold;
+    }
+    .warning {
+      color: red;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+<h2>Đếm ngược 10 phút</h2>
+<div id="timer">10:00</div>
+
+<script>
+  let time = 600; // 10 phút
+  const timer = document.getElementById("timer");
+
+  const interval = setInterval(() => {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    timer.textContent =
+      minutes + ":" + seconds.toString().padStart(2, "0");
+
+    if (time <= 60) {
+      timer.classList.add("warning");
+    }
+
+    if (time <= 0) {
+      clearInterval(interval);
+      alert("Hết thời gian!");
+    }
+
+    time--;
+  }, 1000);
+</script>
+
+</body>
+</html>
